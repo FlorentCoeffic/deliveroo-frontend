@@ -13,7 +13,7 @@ function App() {
 
     console.log(response.data);
     setData(response.data);
-    setIsLoading(true);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -23,7 +23,27 @@ function App() {
   return isLoading ? (
     <span>En cours de chargement... </span>
   ) : (
-    <h2>{data.restaurant.name}</h2>
+    <div>
+      <h2>{data.restaurant.name}</h2>
+      <p>{data.restaurant.description} </p>
+      <div>
+        <img
+          className="img-presentation"
+          src={data.restaurant.picture}
+          alt="pain-quotidien "
+        />
+      </div>
+      {data.categories.map((elem, index) => {
+        return <div key={index}> {elem.name} </div>;
+      })}
+      {data.categories.map((elem, index) => {
+        return (
+          <div>
+            <span>{elem}</span>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
